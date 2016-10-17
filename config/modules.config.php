@@ -5,10 +5,6 @@
  * The previous config file has been stored in ./config/modules.config.old
  */
 return [
-    'DoctrineModule',
-    'DoctrineORMModule',
-    'Phpro\\DoctrineHydrationModule',
-    'ZF\\Apigility\\Doctrine\\Server',
     'Zend\\Cache',
     'Zend\\Form',
     'Zend\\Db',
@@ -30,5 +26,9 @@ return [
     'ZF\\Rest',
     'ZF\\Rpc',
     'ZF\\Versioning',
+    'DoctrineModule',
+    'DoctrineORMModule',
+    'Phpro\\DoctrineHydrationModule',
+    'ZF\\Apigility\\Doctrine\\Server',
     'Application',
 ];
