@@ -2,16 +2,15 @@
 
 namespace Application\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Album
+ * Song
  *
- * @ORM\Table(name="album")
+ * @ORM\Table(name="song")
  * @ORM\Entity
  */
-class Album
+class Song
 {
     /**
      * @var integer
@@ -25,9 +24,9 @@ class Album
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", nullable=true)
+     * @ORM\Column(name="title", type="string", nullable=true)
      */
-    private $name;
+    private $title;
 
     /**
      * @var \DateTime
@@ -37,21 +36,14 @@ class Album
     private $createdAt;
 
     /**
-     * @var Artist
+     * @var Album
      *
-     * @ORM\ManyToOne(targetEntity="Artist", inversedBy="albums")
+     * @ORM\ManyToOne(targetEntity="Album", inversedBy="songs")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="artist_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     *   @ORM\JoinColumn(name="album_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      * })
      */
-    private $artist;
-
-    /**
-     * @var ArrayCollection|Song[]
-     *
-     * @ORM\OneToMany(targetEntity="Song", mappedBy="album")
-     */
-    private $songs;
+    private $album;
 
     /**
      * @return int
@@ -72,17 +64,17 @@ class Album
     /**
      * @return string
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
-     * @param string $name
+     * @param string $title
      */
-    public function setName($name)
+    public function setTitle($title)
     {
-        $this->name = $name;
+        $this->title = $title;
     }
 
     /**
@@ -102,26 +94,18 @@ class Album
     }
 
     /**
-     * @return Song[]|ArrayCollection
+     * @return Album
      */
-    public function getSongs()
+    public function getAlbum()
     {
-        return $this->songs;
+        return $this->album;
     }
 
     /**
-     * @return Artist
+     * @param Album $album
      */
-    public function getArtist()
+    public function setAlbum(Album $album)
     {
-        return $this->artist;
-    }
-
-    /**
-     * @param Artist $artist
-     */
-    public function setArtist(Artist $artist)
-    {
-        $this->artist = $artist;
+        $this->album = $album;
     }
 }

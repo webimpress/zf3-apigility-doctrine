@@ -30,5 +30,6 @@ return [
     'DoctrineORMModule',
     'Phpro\\DoctrineHydrationModule',
     'ZF\\Apigility\\Doctrine\\Server',
+    'ZF\Doctrine\QueryBuilder',
     'Application',
 ];

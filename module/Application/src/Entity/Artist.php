@@ -6,12 +6,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Album
+ * Artist
  *
- * @ORM\Table(name="album")
+ * @ORM\Table(name="artist")
  * @ORM\Entity
  */
-class Album
+class Artist
 {
     /**
      * @var integer
@@ -37,21 +37,11 @@ class Album
     private $createdAt;
 
     /**
-     * @var Artist
+     * @var ArrayCollection|Album[]
      *
-     * @ORM\ManyToOne(targetEntity="Artist", inversedBy="albums")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="artist_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
-     * })
+     * @ORM\OneToMany(targetEntity="Album", mappedBy="artist")
      */
-    private $artist;
-
-    /**
-     * @var ArrayCollection|Song[]
-     *
-     * @ORM\OneToMany(targetEntity="Song", mappedBy="album")
-     */
-    private $songs;
+    private $albums;
 
     /**
      * @return int
@@ -102,26 +92,10 @@ class Album
     }
 
     /**
-     * @return Song[]|ArrayCollection
+     * @return Album[]|ArrayCollection
      */
-    public function getSongs()
+    public function getAlbums()
     {
-        return $this->songs;
-    }
-
-    /**
-     * @return Artist
-     */
-    public function getArtist()
-    {
-        return $this->artist;
-    }
-
-    /**
-     * @param Artist $artist
-     */
-    public function setArtist(Artist $artist)
-    {
-        $this->artist = $artist;
+        return $this->albums;
     }
 }
